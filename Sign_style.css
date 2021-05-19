@@ -1,0 +1,40 @@
+/* √÷√  ¿€º∫¿œ : 2021.05.19 */
+BODY {
+	FONT-SIZE: 9pt; 
+	COLOR: black; 
+	LINE-HEIGHT: 160%; 
+	FONT-FAMILY: ±º∏≤,verdana,tahoma
+}
+TABLE{
+	width:80%;
+	text-align: center;
+	margin: auto;
+}
+TD {
+	text-align: center;
+	FONT-SIZE: 9pt; 
+	COLOR: black; 
+}
+SELECT {
+	FONT-SIZE: 9pt; 
+	COLOR: black; 
+	LINE-HEIGHT: 160%; 
+	FONT-FAMILY: ±º∏≤,verdana,tahoma
+}
+FORM {
+	FONT-SIZE: 9pt; 
+	COLOR: black; 
+}
+INPUT {
+	vertical-align:middle;
+	BORDER: 1px solid #999999; 
+	FONT-SIZE: 9pt; 
+	COLOR: BLACK; 
+	FONT-FAMILY: ±º∏≤,verdana; 
+	HEIGHT: 19px; 
+	BACKGROUND-COLOR: white
+}
+
+A:link {text-decoration:none;color:#696969}
+A:hover{text-decoration:yes;color:#66CCFF}
+A:visited {text-decoration:none;color:#330066}
