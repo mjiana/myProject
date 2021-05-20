@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%-- 최초 작성일 : 2021.05.19 --%>
+<%-- 
+최초 작성일 : 2021.05.19 
+수정1 : 2021.05.20 
+--%>
+<% request.setCharacterEncoding("euc-kr"); %>
+<jsp:useBean id="adrBean" class="mysite.AddressBean"/>
+<jsp:setProperty property="*" name="adrBean"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,12 +87,12 @@ function useEmail() {
 		<td>거주지</td>
 		<td>
 			<input type="hidden" name="maddress" value="">
-			<input type="hidden" id="ck" value="y">
-			<jsp:include page="SignAddress.jsp">
-				<jsp:param value="y" name="ck"/>
-			</jsp:include>
+			<jsp:include page="SignAddress.jsp"/>
 			
-			<!-- 05.19 AM1:46 SignAddress.jsp에서는 select된 값에 따라서 잘나오는데 include하니까 구가 안나온다  -->
+			<!-- 
+			05.19 AM1:46 SignAddress.jsp에서는 select된 값에 따라서 잘나오는데 include하니까 구가 안나온다 
+			05.21 AM1:30 form을 지우고 데이터를 불러오니 maddress1의 최하단 값 '충청북도'의 구만 나온다.
+			 -->
 		</td>
 	</tr>
 	<tr>
