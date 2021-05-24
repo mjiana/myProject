@@ -48,7 +48,7 @@ public class MemberMgr {
 		try {
 			con = pool.getConnection();
 			String strQuery = 
-					"select distinct city from address"; //
+					"select distinct city from address order by city asc"; //
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strQuery);
 			while(rs.next()) {
@@ -74,7 +74,7 @@ public class MemberMgr {
 		try {
 			con = pool.getConnection();
 			String strQuery = 
-					"select distinct district from address where city = ?";
+					"select distinct district from address where city = ?  order by district asc";
 			pstmt = con.prepareStatement(strQuery);
 			pstmt.setString(1, addr);
 			rs = pstmt.executeQuery();

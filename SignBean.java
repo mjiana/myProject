@@ -10,6 +10,7 @@ public class SignBean {
 	private String mtrans;
 	private String mbirth;
 	private String mgender;
+	
 	public String getMid() {
 		return mid;
 	}

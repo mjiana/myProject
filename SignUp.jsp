@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR" import="java.util.*, mysite.*" %>
 <%-- 
 최초 작성일 : 2021.05.19 
 수정1 : 2021.05.20 
 수정2 : 2021.05.24
 --%>
 <% request.setCharacterEncoding("euc-kr"); %>
+<jsp:useBean id="memMgr" class="mysite.MemberMgr" />
 <jsp:useBean id="adrBean" class="mysite.AddressBean"/>
 <jsp:setProperty property="*" name="adrBean"/>
 <!DOCTYPE html>
@@ -88,11 +89,34 @@ function useEmail() {
 		<td class="t1">거주지</td>
 		<td>
 			<input type="hidden" name="maddress" value="">
-			<jsp:include page="SignAddress.jsp"/>
-			
+			<%
+			List cList = memMgr.selectCity();
+			int ccnt = cList.size();
+			String maddress1 = "";
+			String maddress2 = "";
+			List dList = null;
+			AddressBean dBean = null;
+			int dcnt = 0;
+			%>
+			<select name="maddress1" id="maddress1" onchange="selectAdr1(this.value)">
+				<option value="0">도/시/군</option>
+				<%
+				for(int i=0; i<ccnt; i++){
+					AddressBean cBean = (AddressBean)cList.get(i);
+					maddress1 = cBean.getCity();
+					dList = memMgr.selectDistrict(maddress1);
+					%>
+					<option value="<%=maddress1%>"><%=maddress1%></option>
+				<%
+				}
+				dcnt = dList.size();
+				%>
+				</select>
+				<iframe id="adr2Frame" src="SignAddress.jsp" class="iframe1" >거주지 구 select박스</iframe>
 			<!-- 
 			05.19 AM1:46 SignAddress.jsp에서는 select된 값에 따라서 잘나오는데 include하니까 구가 안나온다 
 			05.21 AM1:30 form을 지우고 데이터를 불러오니 maddress1의 최하단 값 '충청북도'의 구만 나온다.
+			05.24 PM11:07 <jsp:include page="SignAddress.jsp"/> 포기 
 			 -->
 		</td>
 	</tr>
@@ -101,11 +125,11 @@ function useEmail() {
 		<td>
 			<!-- checkbox는 다중선택이 가능하므로 name이 같다. -->
 			<input type="hidden" name="mtrans" value="">
-			<input type="checkbox" id="mtrans1" name="mtransSelect" value="버스"> 버스
-			<input type="checkbox" id="mtrans2" name="mtransSelect" value="지하철"> 지하철
-			<input type="checkbox" id="mtrans3" name="mtransSelect" value="기차"> 기차
-			<input type="checkbox" id="mtrans4" name="mtransSelect" value="차량"> 차량
-			<input type="checkbox" id="mtrans5" name="mtransSelect" value="도보" > 도보
+			<input type="checkbox" id="mtrans1" name="mtransCk" value="버스"> 버스
+			<input type="checkbox" id="mtrans2" name="mtransCk" value="지하철"> 지하철
+			<input type="checkbox" id="mtrans3" name="mtransCk" value="기차"> 기차
+			<input type="checkbox" id="mtrans4" name="mtransCk" value="차량"> 차량
+			<input type="checkbox" id="mtrans5" name="mtransCk" value="도보" > 도보
 		</td>
 	</tr>
 	<tr>

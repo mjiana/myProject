@@ -110,25 +110,27 @@ function inputCheck(){
 		df.mphone.value = df.mphone1.value+"-"+df.mphone2.value+"-"+df.mphone3.value;
 		//alert(df.mphone.value);
 	}
-	//거주지 입력 여부 - 05.24 오류 해결전까지 주석처리
-	/*if(df.maddress1.value == "0"){
+	//거주지 입력 여부
+	if(df.maddress1.value == "0"){
 		alert("거주지의 도/시/군을 선택하세요");
 		df.maddress1.focus();
 		return;
 	}
-	if(df.maddress2.value == "0"){
+	//iframe안에 select박스가 있기 때문에 adr2Frame.document.getElementById("maddress2").value로 작성해야한다.
+	if(adr2Frame.document.getElementById("maddress2").value == "0"){
 		alert("거주지의 구를 선택하세요");
-		df.maddress2.focus();
+		adr2Frame.document.getElementById("maddress2").focus();
 		return;
-	}*/
+	}
 	//거주지를 다 입력했다면 합쳐서 저장하기
-	if(df.maddress1.value !="0" && df.maddress2.value!="0"){
-		df.maddress.value = df.maddress1.value+" "+df.maddress2.value;
+	if(df.maddress1.value !="0" && adr2Frame.document.getElementById("maddress2").value!="0"){
+		df.maddress.value = df.maddress1.value+" "+adr2Frame.document.getElementById("maddress2").value;
 		//alert(df.maddress.value);
 	}
 	//교통수단  체크 여부
 	var cnt = 0 ; 
-	var ck = document.getElementsByName("mtransSelect");
+	var ck = document.getElementsByName("mtransCk");
+	
 	for (i=0; i<ck.length; i++){
 		if(ck[i].checked == true) {
 			cnt++;
@@ -148,10 +150,28 @@ function inputCheck(){
 		df.mbirth.value = df.myear.value+"년 "+df.mmonth.value+"월 "+df.mday.value+"일";
 	}
 	
-	//alert(df.mbirth.value);
 	df.submit();
 }
-
+//거주지 
+function selectAdr1(maddress1){
+	//새창에 표시하기
+		//url = "SignAddress.jsp?maddress1="+encodeURIComponent(encodeURIComponent(maddress1));
+		//window.open(url,"Address","width=150,height=100");
+	//iframe에 링크 넣기
+	adr2Frame.location.href="SignAddress.jsp?maddress1="+encodeURIComponent(encodeURIComponent(maddress1));
+	
+	/* 05.24 오류
+	url = "SignAddress.jsp?maddress1="+adr1;
+	window.open(url,"Address","width=150,height=100");
+	=> java.lang.IllegalArgumentException: 요청 타겟에서 유효하지 않은 문자가 발견되었습니다. 유효한 문자들은 RFC 7230과 RFC 3986에 정의되어 있습니다.
+	한글 인코딩 지원을 안해서 그렇다고한다.
+	server.xml에 추가하거나 파라미터에 encodeURI써서 사용하면 된다고 하는데 나는 server.xml을 수정할거다.
+	Connector에 relaxedQueryChars="[,]"를 추가하기
+	//수정 전 : <Connector URIEncoding="EUC-KR" connectionTimeout="20000" port="8888" protocol="HTTP/1.1" redirectPort="8443" />
+	//수정 후 : <Connector URIEncoding="EUC-KR" connectionTimeout="20000" port="8888" protocol="HTTP/1.1" redirectPort="8443" relaxedQueryChars="[,]"/>
+	Microsoft Edge에서는 잘되는데 crome이나 이클립스에서는 안된다.
+	 */
+}
 // login Page js //
 function logCheck(){
 	document.location = "SignOut.jsp";
