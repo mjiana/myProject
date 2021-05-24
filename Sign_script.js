@@ -110,8 +110,8 @@ function inputCheck(){
 		df.mphone.value = df.mphone1.value+"-"+df.mphone2.value+"-"+df.mphone3.value;
 		//alert(df.mphone.value);
 	}
-	//거주지 입력 여부
-	if(df.maddress1.value == "0"){
+	//거주지 입력 여부 - 05.24 오류 해결전까지 주석처리
+	/*if(df.maddress1.value == "0"){
 		alert("거주지의 도/시/군을 선택하세요");
 		df.maddress1.focus();
 		return;
@@ -120,7 +120,7 @@ function inputCheck(){
 		alert("거주지의 구를 선택하세요");
 		df.maddress2.focus();
 		return;
-	}
+	}*/
 	//거주지를 다 입력했다면 합쳐서 저장하기
 	if(df.maddress1.value !="0" && df.maddress2.value!="0"){
 		df.maddress.value = df.maddress1.value+" "+df.maddress2.value;
@@ -128,13 +128,15 @@ function inputCheck(){
 	}
 	//교통수단  체크 여부
 	var cnt = 0 ; 
-	var ck = document.getElementsByName("mtrans");
+	var ck = document.getElementsByName("mtransSelect");
 	for (i=0; i<ck.length; i++){
 		if(ck[i].checked == true) {
 			cnt++;
+			df.mtrans.value += ck[i].value+" ";
 			//alert(ck[i].value);
 		}
 	}
+	//alert(df.mtrans.value);
 	if(cnt < 1){
 		alert("주요 교통수단을 한개 이상 선택하세요");	
 		return;
@@ -148,4 +150,31 @@ function inputCheck(){
 	
 	//alert(df.mbirth.value);
 	df.submit();
+}
+
+// login Page js //
+function logCheck(){
+	document.location = "SignOut.jsp";
+}
+function loginCheck(){
+	var df = document.login;
+	if(df.mid.value==""){
+		alert("아이디를 입력해주세요");
+		df.mid.focus();
+		return;
+	}
+	if(df.mpw.value==""){
+		alert("비밀번호를 입력해주세요");
+		df.mpw.focus();
+		return;
+	}
+	df.submit();
+}
+function signUp(){
+	document.location = "SignUp.jsp";
+}
+////////////////////
+// My Page js //
+function viewPage(){
+	document.location = "MyPage.jsp";
 }

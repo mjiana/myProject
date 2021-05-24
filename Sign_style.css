@@ -1,40 +1,108 @@
-/* √÷√  ¿€º∫¿œ : 2021.05.19 */
-BODY {
-	FONT-SIZE: 9pt; 
-	COLOR: black; 
-	LINE-HEIGHT: 160%; 
-	FONT-FAMILY: ±º∏≤,verdana,tahoma
-}
-TABLE{
-	width:80%;
-	text-align: center;
+/* 
+√÷√  ¿€º∫¿œ : 2021.05.19
+ºˆ¡§¿œ : 2012.05.24 
+*/
+table{
+	width: auto;
 	margin: auto;
-}
-TD {
 	text-align: center;
-	FONT-SIZE: 9pt; 
-	COLOR: black; 
+	color: #4c4c4c;
+	FONT-FAMILY: ±º∏≤,verdana,tahoma;
+	FONT-SIZE: 10pt; 
+	background-color: #ececec;
+	border-radius: 5px;
 }
-SELECT {
-	FONT-SIZE: 9pt; 
-	COLOR: black; 
-	LINE-HEIGHT: 160%; 
-	FONT-FAMILY: ±º∏≤,verdana,tahoma
+p{
+	text-align: center;
 }
-FORM {
-	FONT-SIZE: 9pt; 
-	COLOR: black; 
+td{
+	width: auto;
+	min-width: 50px;
+	font-family:inherit;
+	font-size: inherit;
 }
-INPUT {
-	vertical-align:middle;
-	BORDER: 1px solid #999999; 
-	FONT-SIZE: 9pt; 
-	COLOR: BLACK; 
-	FONT-FAMILY: ±º∏≤,verdana; 
-	HEIGHT: 19px; 
-	BACKGROUND-COLOR: white
+.t1{
+	background-color: #e2e2e2;
+	border-radius: 10px;
 }
-
-A:link {text-decoration:none;color:#696969}
-A:hover{text-decoration:yes;color:#66CCFF}
-A:visited {text-decoration:none;color:#330066}
+font {
+	size: 4px;
+	color: gray;
+}
+.f1{
+	size: 4px;
+	color: #ff4646;
+}
+.f2{
+	size: 4px;
+	color: blue;
+}
+/* input[type=text], input[type=password]{
+	text-align: left;
+	width: 300px;
+	border: 1px solid gray;
+	color: #535353;
+	font-family:inherit;
+	font-size: inherit;
+} */
+.txt1{
+	text-align: left;
+	width: 150px;
+	border: 1px solid gray;
+	color: #535353;
+}
+/* input[type=button], input[type=reset]{
+	text-align: center;
+	width: auto;
+	vertical-align: middle;
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 10px;
+	font-weight: bold;
+	color: #535353;
+	FONT-FAMILY:inherit;
+	LINE-HEIGHT: 150%;
+} */
+.btn1{
+	text-align: center;
+	width: auto;
+	vertical-align: bottom;
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 5px;
+	color: #535353;
+	font-family:inherit;
+	font-size: inherit;
+	line-height: 140%;
+}
+textarea{
+	text-align: left;
+	width: 300px;
+	height: 200px;
+	font-family:inherit;
+	font-size: inherit;
+	color: #535353;
+}
+select{
+	text-align: center;
+	width: auto;
+	vertical-align: middle;
+	border: 1px solid gray;
+	border-radius: 0px;
+	font-weight: lighter;
+	font-family:inherit;
+	font-size: inherit;
+}
+a:link{ 
+	font-family:inherit;
+	font-size: inherit;
+	font-weight:bolder;
+	text-decoration: none; 
+	color: #4c4c4c;
+}
+a:hover, a:visited{
+	/* background-color:#d2d2d2; */
+	text-decoration:underline;
+	color: #4c4c4c;
+	font-size:inherit;
+}

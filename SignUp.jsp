@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%-- 최초 작성일 : 2021.05.19 --%>
+<%-- 
+최초 작성일 : 2021.05.19 
+수정1 : 2021.05.20 
+수정2 : 2021.05.24
+--%>
+<% request.setCharacterEncoding("euc-kr"); %>
+<jsp:useBean id="adrBean" class="mysite.AddressBean"/>
+<jsp:setProperty property="*" name="adrBean"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,33 +34,33 @@ function useEmail() {
 </head>
 <body onload="signForm.mid.focus();useEmail()">
 <br><br>
-<form name="signForm" method="post" action="SignUpCk.jsp"> 
-<table border="1">
+<form name="signForm" method="post" action="SignUpInsert.jsp"> 
+<table>
 	<tr>
 		<td colspan="2"><b>계정 만들기</b></td>
 	</tr>
 	<tr>
-		<td width="20%">아이디</td>
-		<td width="70%">
+		<td class="t1">아이디</td>
+		<td>
 			<input type="text" name="mid" id="mid" size="20">
 			<input type="hidden" name="idCk" value="no">
-			<input type="button" value="ID중복확인" onclick="idCheck(this.form.mid.value)">
+			<input type="button" class="btn1" value="ID중복확인" onclick="idCheck(this.form.mid.value)">
 		</td>
 	</tr>
 	<tr>
-		<td>비밀번호</td>
+		<td class="t1">비밀번호</td>
 		<td><input type="password" name="mpw" size="20"></td>
 	</tr>
 	<tr>
-		<td>비밀번호 확인</td>
+		<td class="t1">비밀번호 확인</td>
 		<td><input type="password" name="repw" size="20"></td>
 	</tr>
 	<tr>
-		<td>이름</td>
+		<td class="t1">이름</td>
 		<td><input type="text" name="mname" size="20"></td>
 	</tr>
 	<tr>
-		<td>이메일</td>
+		<td class="t1">이메일</td>
 		<td>
 			<input type="radio" name="memail_use" id="email_no" value="no" checked="checked" onclick="useEmail()">사용안함 &nbsp;
 			<input type="radio" name="memail_use" id="email_yes"  value="yes" onclick="useEmail()">사용함 
@@ -62,7 +69,7 @@ function useEmail() {
 		</td>
 	</tr>
 	<tr>
-		<td>핸드폰번호</td>
+		<td class="t1">핸드폰번호</td>
 		<td>
 			<input type="hidden" name="mphone" value="">
 			<select name="mphone1" id="mphone1">
@@ -78,33 +85,34 @@ function useEmail() {
 		</td>
 	</tr>
 	<tr>
-		<td>거주지</td>
+		<td class="t1">거주지</td>
 		<td>
 			<input type="hidden" name="maddress" value="">
-			<input type="hidden" id="ck" value="y">
-			<jsp:include page="SignAddress.jsp">
-				<jsp:param value="y" name="ck"/>
-			</jsp:include>
+			<jsp:include page="SignAddress.jsp"/>
 			
-			<!-- 05.19 AM1:46 SignAddress.jsp에서는 select된 값에 따라서 잘나오는데 include하니까 구가 안나온다  -->
+			<!-- 
+			05.19 AM1:46 SignAddress.jsp에서는 select된 값에 따라서 잘나오는데 include하니까 구가 안나온다 
+			05.21 AM1:30 form을 지우고 데이터를 불러오니 maddress1의 최하단 값 '충청북도'의 구만 나온다.
+			 -->
 		</td>
 	</tr>
 	<tr>
-		<td>주요 교통수단</td>
+		<td class="t1">주요 교통수단</td>
 		<td>
-			<!-- checkbox는 다중선택이 가능하므로 name이 다르다. -->
-			<input type="checkbox" id="mtrans1" name="mtrans" value="버스"> 버스
-			<input type="checkbox" id="mtrans2" name="mtrans" value="지하철"> 지하철
-			<input type="checkbox" id="mtrans3" name="mtrans" value="기차"> 기차
-			<input type="checkbox" id="mtrans4" name="mtrans" value="차량"> 차량
-			<input type="checkbox" id="mtrans5" name="mtrans" value="도보" > 도보
+			<!-- checkbox는 다중선택이 가능하므로 name이 같다. -->
+			<input type="hidden" name="mtrans" value="">
+			<input type="checkbox" id="mtrans1" name="mtransSelect" value="버스"> 버스
+			<input type="checkbox" id="mtrans2" name="mtransSelect" value="지하철"> 지하철
+			<input type="checkbox" id="mtrans3" name="mtransSelect" value="기차"> 기차
+			<input type="checkbox" id="mtrans4" name="mtransSelect" value="차량"> 차량
+			<input type="checkbox" id="mtrans5" name="mtransSelect" value="도보" > 도보
 		</td>
 	</tr>
 	<tr>
 		<td colspan=2  align="center"><b>선택사항</b></td>
 	</tr>
 	<tr>
-		<td>생년월일</td>
+		<td class="t1">생년월일</td>
 		<td>
 			<input type="hidden" name="mbirth">
 			<input type="text" name="myear" id="myear" size="4" maxlength="4" value="0000" 
@@ -124,7 +132,7 @@ function useEmail() {
 		</td>
 	</tr>
 	<tr>
-		<td>성별</td>
+		<td class="t1">성별</td>
 		<td>
 			<select name="mgender" id="mgender">
 				<option value="0" selected="selected">선택안함</option>
@@ -135,9 +143,9 @@ function useEmail() {
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="button" value="회원가입" onclick="inputCheck()">
+			<input type="button" class="btn1" value="회원가입" onclick="inputCheck()">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="reset" value="다시쓰기" onclick="signForm.mid.focus()">
+			<input type="reset" class="btn1" value="다시쓰기" onclick="signForm.mid.focus()">
 		</td>
 	</tr>
 </table>

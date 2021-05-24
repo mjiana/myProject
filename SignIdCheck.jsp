@@ -3,8 +3,8 @@
 <%-- 최초 작성일 : 2021.05.19 --%>    
 <jsp:useBean id="memMgr" class="mysite.MemberMgr" />
 <% 
-String mem_id = request.getParameter("mid");
-boolean check = memMgr.checkId(mem_id);
+String mid = request.getParameter("mid");
+boolean check = memMgr.checkId(mid);
 %>
 <!DOCTYPE html>
 <html>
@@ -32,14 +32,14 @@ function noId(){
 <body>
 <br>
 <p align="center">
-<b><%=mem_id %></b>는
+<b><%=mid %></b>는
 </p>
 <%
 if(check) {
 %>
 	<p align="center">이미 존재하는 ID입니다.</p>
 	<p align="center">
-		<input type="button" value="닫기" onclick="self.close()">
+		<input type="button" class="btn1" value="닫기" onclick="self.close()">
 	</p>
 <%
 }
@@ -50,8 +50,8 @@ else {
 	사용하시겠습니까?
 	</p>
 	<p align="center">
-	<input type="button" value="yes" onclick="yesId()">
-	<input type="button" value="no" onclick="noId()">
+	<input type="button" class="btn1" value="yes" onclick="yesId()">
+	<input type="button" class="btn1" value="no" onclick="noId()">
 	</p>
 <%
 }
