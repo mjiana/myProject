@@ -1,0 +1,30 @@
+/* 
+최초 작성일 : 2021.05.26
+*/
+div{
+	text-align: center;
+	margin: 20px;
+	width:auto;
+	height:auto;
+	vertical-align: middle;
+}
+.div1{
+	position: relative;
+	top: 130px;
+}
+.div2{
+	position: relative;
+	top: 150px;
+}
+.btn1{
+	text-align: center;
+	width: auto;
+	vertical-align: bottom;
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 5px;
+	color: #535353;
+	font-family:inherit;
+	font-size: inherit;
+	line-height: 140%;
+}
